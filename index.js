@@ -37,7 +37,14 @@ router.get('/sendemail/:orderid/:amount/:buyer', function (request, response) {
          };
          
          // send the message and get a callback with an error or details of the message that was sent
-         server.send(message, function(err, message) { console.log(err || message); });
+         server.send(message, function(err, message) {      
+            if (err)
+             console.log(err);
+            else{
+	            console.log('SUCCESS',message);
+                  response.send({ success: true });
+            }
+          });
          
 
 })
